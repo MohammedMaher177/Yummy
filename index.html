@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Nunito+Sans:ital,wght@1,800&family=Poppins:wght@400;500&family=Roboto&family=Source+Sans+Pro&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/all.min.css">
+        <link rel="stylesheet" href="./css/aos.css">
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="loading">Loading&#8230;</div>
+        <nav class="navBar bg-dark position-fixed d-flex h-100">
+            <div class=" fs-3 mx-5">
+                <ul class=" list-unstyled p-3">
+                    <li data-aos="zoom-in-up">
+                        <span class=" text-decoration-none
+                            text-white fs-6" id="navSearch">Search</span>
+                    </li>
+                    <li data-aos="zoom-in-up">
+                        <span class=" text-decoration-none
+                            text-white fs-6" id="nav-categories">Categories</span>
+                    </li>
+                    <li data-aos="zoom-in-up">
+                        <span id="navArea" class=" text-decoration-none
+                            text-white
+                            fs-6">Area</span>
+                    </li>
+                    <li data-aos="zoom-in-up">
+                        <span id="navIngredients" class=" text-decoration-none
+                            text-white fs-6">Ingredients</span>
+                    </li>
+                    <li data-aos="zoom-in-up">
+                        <span class="fs-6 text-decoration-none
+                            text-white" id="navContact-us">Contact Us</span>
+                    </li>
+                </ul>
+                <div class="navBar-footer bottom-0 position-absolute w-100
+                    start-0">
+                    <ul class=" list-unstyled d-flex text-white-50">
+                        <li>
+                            <a href="#">
+                                <i class="fa-brands fa-facebook m-2 text-white
+                                    fs-4"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-brands fa-twitter m-2 text-white
+                                    fs-4"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-brands fa-github m-2 text-white
+                                    fs-4"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class=" text-white-50 fs-6">
+                        Copyright Â© 2019 All Rights
+                        Reserved.
+                    </p>
+                </div>
+            </div>
+            <div class=" position-relative">
+                <div id="openning">
+                    <div>
+                        <img src="./images/logo (1).png" class="w-100" alt="">
+                    </div>
+                    <div id="open" class="fs-1 cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-globe d-block"></i>
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section id="main-page" class="">
+            <div class="container p-5">
+                <div class="row" id="display-data">
+                    <div class="col-md-3">
+                        <h1>Main Page</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="search" class="bg-dark vh-100 p-5">
+            <div class="container w-75">
+                <div class="row ms-auto mb-5">
+                    <div class="col-md-6">
+                        <input type="text" class=" form-control"
+                            placeholder="SEARCH BY NAME........"
+                            id="search-by-name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class=" form-control"
+                            placeholder="SEARCH BY FIREST LATTER........"
+                            maxlength="1"
+                            id="search-by-letter">
+                    </div>
+
+                </div>
+                <div class="row" id="display-search-data">
+
+                </div>
+            </div>
+        </section>
+        <section id="categories">
+            <div class="container p-5">
+                <div class="row" id="display-categories-data">
+                    
+                </div>
+            </div>
+        </section>
+        <section id="area">
+            <div class="container p-5">
+                <div class="row" id="display-area-data">
+                    <h1>Main area</h1>
+
+                </div>
+            </div>
+        </section>
+        <section id="ingredients">
+            <div class="container p-5">
+                <div class="row" id="display-ingredients-data">
+                    <h1>Main ingredients</h1>
+
+                </div>
+            </div>
+        </section>
+        <section id="contact-us">
+            <div class="container p-5">
+                <div class="row" id="display-contact-us-data">
+                    <h1>Main Contact us </h1>
+
+                </div>
+            </div>
+        </section>
+        <script src="./js/aos.js"></script>
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="./js/jquery-3.6.3.min.js"></script>
+        <script src="./js/index.js" type="module"></script>
+    </body>
+</html>
