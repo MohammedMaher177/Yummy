@@ -11,7 +11,9 @@ async function getData() {
 getData();
 
 /* S T A R T      N  A V */
-
+function isLoading() {
+  $(".loading").fadeIn();
+}
 function closeNav() {
   let eleWidth = $("nav").innerWidth();
   $("#openning").css("left", `${eleWidth}`);
@@ -52,6 +54,7 @@ $("#open").click(() => {
 /* E N D          N  A V */
 
 function displayData(arr, id = "display-data") {
+  isLoading();
   $("section").css("display", "none");
   $("#main-page").css("display", "block");
   let cartona = ``;
@@ -69,30 +72,35 @@ function displayData(arr, id = "display-data") {
                     </div>`;
   }
   document.getElementById(id).innerHTML = cartona;
+  $(document).ready(
+    $(document).ready(function () {
+      $(".loading").fadeOut(1000);
+    })
+  );
 }
 
 $("#navSearch").click(() => {
+  isLoading();
   $("section").css("display", "none");
   $("#search").css("display", "block");
+
+  $(document).ready(function () {
+    $(".loading").fadeOut(1000);
+  });
 });
 async function getDataByName(name) {
   let res = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
   );
   res = await res.json();
-  // console.log(res);
-
   displayDataByName(res.meals, "display-search-data");
 }
 
 $(searchName).keyup(() => {
-  $("#loading").css("display", "block");
-  // console.log(searchName.value);
   getDataByName(searchName.value);
 });
 function displayDataByName(arr, id = "display-search-data") {
   let cartona = ``;
-
   for (let i = 0; i < arr.length; i++) {
     cartona += `<div class="col-md-3 cursor-pointer"">
                   <div class="meal-card">
@@ -106,6 +114,9 @@ function displayDataByName(arr, id = "display-search-data") {
                 </div>`;
   }
   document.getElementById(id).innerHTML = cartona;
+  $(document).ready(function () {
+    $(".loading").fadeOut(1000);
+  });
 }
 async function getDataByLetter(name) {
   let res = await fetch(
@@ -116,13 +127,13 @@ async function getDataByLetter(name) {
   displayDataByName(res.meals, "display-search-data");
 }
 $("#search-by-letter").keyup(() => {
-  console.log(searchLetter.value);
   getDataByLetter(searchLetter.value);
 });
 
 $("#nav-categories").click(() => {
   $("section").css("display", "none");
   $("#categories").css("display", "block");
+  isLoading();
   listCategories();
 });
 
@@ -151,6 +162,9 @@ function displaylistCategories(arr) {
                     </div>`;
   }
   document.getElementById("display-categories-data").innerHTML = cartona;
+  $(document).ready(() => {
+    $(".loading").fadeOut(1000);
+  });
 }
 async function categoryData() {
   let ele = event.target.getAttribute("data-categ-id");
@@ -179,6 +193,7 @@ function categoriesMoreDetailes(arr) {
 $("#navArea").click(() => {
   $("section").css("display", "none");
   $("#area").css("display", "block");
+  isLoading();
   listArea();
 });
 
@@ -202,6 +217,9 @@ function displaylistArea(arr) {
                     </div>`;
   }
   document.getElementById("display-area-data").innerHTML = cartona;
+  $(document).ready(() => {
+    $(".loading").fadeOut(1000);
+  });
 }
 function getAreaDetailes(e) {
   let ele = event.target.getAttribute("data-area-name");
@@ -217,6 +235,7 @@ async function areaData(name) {
 $("#navIngredients").click(() => {
   $("section").css("display", "none");
   $("#ingredients").css("display", "block");
+  isLoading();
   listIngredients();
 });
 
@@ -242,6 +261,9 @@ function displaylistIngredients(arr) {
                     </div>`;
   }
   document.getElementById("display-ingredients-data").innerHTML = cartona;
+  $(document).ready(() => {
+    $(".loading").fadeOut(1000);
+  });
 }
 function ingredientsDetailes() {
   let ele = event.target.getAttribute("data-ingredients");
@@ -255,11 +277,16 @@ async function ingredientData(name) {
   displayData(res.meals);
 }
 $("#navContact-us").click(() => {
+  isLoading();
   $("section").css("display", "none");
   $("#contact-us").css("display", "flex");
+  $(document).ready(() => {
+    $(".loading").fadeOut(1000);
+  });
 });
 
 async function getDataById(id = "5") {
+  isLoading();
   let res = await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   );
@@ -268,7 +295,7 @@ async function getDataById(id = "5") {
   getMoreDetales(res.meals[0]);
 }
 function getMoreDetales(res) {
-  console.log(res);
+  isLoading();
   $("section").css("display", "none");
   $("#more-detailes").css("display", "block");
   let cartona = `<div class="col-md-4">
@@ -307,6 +334,9 @@ function getMoreDetales(res) {
                     </div>`;
 
   document.getElementById("meal-detailes").innerHTML = cartona;
+  $(document).ready(() => {
+    $(".loading").fadeOut(1000);
+  });
 }
 
 function validation() {
