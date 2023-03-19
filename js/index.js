@@ -23,17 +23,16 @@ function closeNav() {
 
 function openNav() {
   let eleWidth = $("nav").innerWidth();
+
   $("nav").animate({ left: `0` }, 500);
   $("#openning").animate({ left: `${eleWidth}` }, 500, () => {
-    $("#open i").attr("class", "fa-solid fa-xmark");
     AOS.init();
+    $("#open i").attr("class", "fa-solid fa-xmark");
   });
 }
-
+AOS.init();
 $(document).ready(function () {
-  $(".loading").fadeOut(1000);
-  $(".loading").fadeOut(1000);
-  // $(".loading").fadeOut(1000, () => closeNav());
+  $(".loading").fadeOut(1000, () => closeNav());
 });
 $(document).click((e) => {
   let eleWidth = $("nav").innerWidth();
@@ -51,10 +50,8 @@ $("#open").click(() => {
 });
 
 /* E N D          N  A V */
-AOS.init();
 
 function displayData(arr, id = "display-data") {
-  // console.log(arr);
   $("section").css("display", "none");
   $("#main-page").css("display", "block");
   let cartona = ``;
@@ -71,7 +68,6 @@ function displayData(arr, id = "display-data") {
                         </div>
                     </div>`;
   }
-  // console.log(arr);
   document.getElementById(id).innerHTML = cartona;
 }
 
@@ -85,10 +81,12 @@ async function getDataByName(name) {
   );
   res = await res.json();
   // console.log(res);
+
   displayDataByName(res.meals, "display-search-data");
 }
 
 $(searchName).keyup(() => {
+  $("#loading").css("display", "block");
   // console.log(searchName.value);
   getDataByName(searchName.value);
 });
@@ -235,7 +233,7 @@ function displaylistIngredients(arr) {
   for (let i = 0; i < arr.length && i < 50; i++) {
     cartona += `<div class="col-md-3 cursor-pointer mb-5"  onclick="ingredientsDetailes()" data-ingredients="${arr[i].strIngredient}">
                         <div class="meal-card text-center" data-ingredients="${arr[i].strIngredient}">
-                                
+                                <i class="fa-solid fa-drumstick-bite fa-4x"></i>
                                 <h3 class="img-captio bg-opacity-50 bg-white" data-ingredients="${arr[i].strIngredient}">
                                     ${arr[i].strIngredient}
                                 </h3>
@@ -310,3 +308,69 @@ function getMoreDetales(res) {
 
   document.getElementById("meal-detailes").innerHTML = cartona;
 }
+
+function validation() {
+  if (
+    validateName($("#userName").val()) &&
+    validateEmail($("#userEmail").val()) &&
+    validatePhone($("#userPhone").val()) &&
+    validateAge($("#userAge").val())
+  ) {
+    document.querySelector("#submit").classList.remove("disabled");
+    document.querySelector("#submit").classList.add("cursor-pointer");
+  } else {
+    document.querySelector("#submit").classList.add("disabled");
+  }
+}
+$("#userName").keyup(() => {
+  let userReguler = validateName($("#userName").val());
+  userReguler
+    ? $("#userReg").css("display", "none")
+    : $("#userReg").css("display", "block");
+  $("#userName").val() == "" && $("#userReg").css("display", "none");
+  validation();
+});
+
+function validateName(name) {
+  let regex = /^[a-zA-Z\s]{4,12}$/;
+  return regex.test(name) == true;
+}
+$("#userEmail").keyup(() => {
+  let emailReguler = validateEmail($("#userEmail").val());
+  emailReguler
+    ? $("#emailReg").css("display", "none")
+    : $("#emailReg").css("display", "block");
+  $("#userEmail").val() == "" && $("#emailReg").css("display", "none");
+  validation();
+});
+function validateEmail(email) {
+  let regex = /^[a-z]{1,}@[a-z]{1,}(.com|.org)$/;
+  return regex.test(email) == true;
+}
+$("#userPhone").keyup(() => {
+  let phoneReguler = validatePhone($("#userPhone").val());
+  phoneReguler
+    ? $("#phoneReg").css("display", "none")
+    : $("#phoneReg").css("display", "block");
+  $("#userPhone").val() == "" && $("#phoneReg").css("display", "none");
+  validation();
+});
+function validatePhone(phone) {
+  let regex = /[0-9]{10}/;
+  return regex.test(phone) == true;
+}
+$("#userAge").keyup(() => {
+  let ageReguler = validateAge($("#userAge").val());
+  ageReguler
+    ? $("#ageReg").css("display", "none")
+    : $("#ageReg").css("display", "block");
+  $("#userAge").val() == "" && $("#ageReg").css("display", "none");
+  validation();
+});
+function validateAge(age) {
+  let regex = /^[1-7]?[0-9]$|80/;
+  return regex.test(age) == true;
+}
+$("#submit").click((e) => {
+  e.preventDefault();
+});

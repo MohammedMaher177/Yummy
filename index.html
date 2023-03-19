@@ -4,40 +4,50 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Nunito+Sans:ital,wght@1,800&family=Poppins:wght@400;500&family=Roboto&family=Source+Sans+Pro&display=swap"
-            rel="stylesheet">
+        <title>Yummy</title>
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/all.min.css">
         <link rel="stylesheet" href="./css/aos.css">
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
-        <div class="loading">Loading&#8230;</div>
+        <div class="loading vh-100">
+            <div class="center h-100">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
         <nav class="navBar bg-dark position-fixed d-flex h-100 z-2">
             <div class=" fs-3 mx-5">
                 <ul class=" list-unstyled p-3">
-                    <li data-aos="zoom-in-up">
+                    <li data-aos="zoom-out-up">
                         <span class=" text-decoration-none cursor-pointer
                             text-white fs-6" id="navSearch">Search</span>
                     </li>
-                    <li data-aos="zoom-in-up">
+                    <li data-aos="zoom-out-up">
                         <span class=" text-decoration-none cursor-pointer
                             text-white fs-6" id="nav-categories">Categories</span>
                     </li>
-                    <li data-aos="zoom-in-up">
+                    <li data-aos="zoom-out-up">
                         <span id="navArea" class=" text-decoration-none
                             cursor-pointer
                             text-white
                             fs-6">Area</span>
                     </li>
-                    <li data-aos="zoom-in-up">
+                    <li data-aos="zoom-out-up">
                         <span id="navIngredients" class=" text-decoration-none
                             cursor-pointer
                             text-white fs-6">Ingredients</span>
                     </li>
-                    <li data-aos="zoom-in-up">
+                    <li data-aos="zoom-out-up">
                         <span class="fs-6 text-decoration-none cursor-pointer
                             text-white" id="navContact-us">Contact Us</span>
                     </li>
@@ -137,51 +147,64 @@
                 </div>
             </div>
         </section>
-        <section id="contact-us" class=" bg-dark text-center justify-content-center
+        <section id="contact-us" class=" bg-dark text-center
+            justify-content-center
             align-items-center w-100 vh-100">
             <form class="w-75">
                 <div class="container p-5">
                     <div class="row" id="display-contact-us-data">
-
                         <div class="col-md-6 mb-4">
                             <input type="text" name="userName" id="userName"
                                 placeholder="Enter Your Name..." class="
                                 form-control">
+                            <p class=" text-danger" id="userReg">INVALID INPUT,
+                                min char 4, max char 12, only alphabet</p>
                         </div>
                         <div class="col-md-6 mb-4">
                             <input type="email" name="userEmail" id="userEmail"
                                 placeholder="Enter Your Email..." class="
                                 form-control">
+                            <p class=" text-danger" id="emailReg">INVALID
+                                INPUT,for example ###@###.com</p>
                         </div>
                         <div class="col-md-6 mb-4">
                             <input type="tel" name="userPhone" id="userPhone"
                                 placeholder="Enter Your Phone Number..." class="
                                 form-control">
+                            <p class=" text-danger" id="phoneReg">Enter valid
+                                Phone Number</p>
+
                         </div>
                         <div class="col-md-6 mb-4">
                             <input type="number" name="userAge" id="userAge"
                                 placeholder="Enter Your Age..." class="
                                 form-control">
+                            <p class=" text-danger" id="ageReg">Invalid user Age</p>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <input type="password" name="userPassword" id="userPassword"
+                            <input type="password" name="userPassword"
+                                id="userPassword"
                                 placeholder="Enter Your Password..." class="
                                 form-control">
                         </div>
                         <div class="col-md-6 mb-4">
-                            <input type="password" name="userRePassword" id="userRePassword"
+                            <input type="password" name="userRePassword"
+                                id="userRePassword"
                                 placeholder="Re Enter Your Password..." class="
                                 form-control">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-danger d-flex mx-auto disabled">Submit</button>
+                    <button type="submit" class="btn btn-outline-danger d-flex
+                        disabled
+                        mx-auto" id="submit">Submit</button>
                 </div>
             </form>
         </section>
-        <section id="more-detailes">
+        <section id="more-detailes" class=" vh-100 bg-black p-5 text-white-50
+            bg-opacity-75">
             <div class="container">
                 <div class="row" id="meal-detailes">
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                         <figure>
                             <img src="" alt="">
                         </figure>
@@ -220,7 +243,7 @@
                             <a href="" target="_blank" class="btn btn-success">Source</a>
                             <a href="" target="_blank" class="btn btn-danger">Youtube</a>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -228,6 +251,7 @@
         <script src="./js/aos.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="./js/jquery-3.6.3.min.js"></script>
+        <script src="./js/aos.js"></script>
         <script src="./js/index.js"></script>
     </body>
 </html>
