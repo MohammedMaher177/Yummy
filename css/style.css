@@ -125,16 +125,21 @@
     transform: rotate(360deg);
   }
 }
-#search ,#categories ,#area, #ingredients,#contact-us{
+#search,
+#categories,
+#area,
+#ingredients,
+#contact-us,
+#more-detailes {
   display: none;
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
-section{
+section {
   transition: all 0.5s;
 }
-#openning{
+#openning {
   position: fixed;
   text-align: center;
   max-width: 5%;
@@ -145,11 +150,11 @@ section{
   align-items: stretch;
   background-color: white;
 }
-.meal-card{
+.meal-card {
   overflow: hidden;
 }
 
-.img-caption{
+.img-caption {
   position: absolute;
   top: 120%;
   right: 0;
@@ -160,7 +165,16 @@ section{
   align-items: center;
   justify-content: center;
 }
-.meal-card:hover .img-caption{
+.meal-card:hover .img-caption {
   top: 0;
 }
 
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 18px;
+  max-height: calc(4 * 18) px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

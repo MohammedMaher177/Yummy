@@ -15,28 +15,30 @@
     </head>
     <body>
         <div class="loading">Loading&#8230;</div>
-        <nav class="navBar bg-dark position-fixed d-flex h-100">
+        <nav class="navBar bg-dark position-fixed d-flex h-100 z-2">
             <div class=" fs-3 mx-5">
                 <ul class=" list-unstyled p-3">
                     <li data-aos="zoom-in-up">
-                        <span class=" text-decoration-none
+                        <span class=" text-decoration-none cursor-pointer
                             text-white fs-6" id="navSearch">Search</span>
                     </li>
                     <li data-aos="zoom-in-up">
-                        <span class=" text-decoration-none
+                        <span class=" text-decoration-none cursor-pointer
                             text-white fs-6" id="nav-categories">Categories</span>
                     </li>
                     <li data-aos="zoom-in-up">
                         <span id="navArea" class=" text-decoration-none
+                            cursor-pointer
                             text-white
                             fs-6">Area</span>
                     </li>
                     <li data-aos="zoom-in-up">
                         <span id="navIngredients" class=" text-decoration-none
+                            cursor-pointer
                             text-white fs-6">Ingredients</span>
                     </li>
                     <li data-aos="zoom-in-up">
-                        <span class="fs-6 text-decoration-none
+                        <span class="fs-6 text-decoration-none cursor-pointer
                             text-white" id="navContact-us">Contact Us</span>
                     </li>
                 </ul>
@@ -83,11 +85,10 @@
                 </div>
             </div>
         </nav>
-        <section id="main-page" class="">
+        <section id="main-page">
             <div class="container p-5">
                 <div class="row" id="display-data">
                     <div class="col-md-3">
-                        <h1>Main Page</h1>
                     </div>
                 </div>
             </div>
@@ -116,7 +117,7 @@
         <section id="categories">
             <div class="container p-5">
                 <div class="row" id="display-categories-data">
-                    
+
                 </div>
             </div>
         </section>
@@ -136,17 +137,97 @@
                 </div>
             </div>
         </section>
-        <section id="contact-us">
-            <div class="container p-5">
-                <div class="row" id="display-contact-us-data">
-                    <h1>Main Contact us </h1>
+        <section id="contact-us" class=" bg-dark text-center justify-content-center
+            align-items-center w-100 vh-100">
+            <form class="w-75">
+                <div class="container p-5">
+                    <div class="row" id="display-contact-us-data">
 
+                        <div class="col-md-6 mb-4">
+                            <input type="text" name="userName" id="userName"
+                                placeholder="Enter Your Name..." class="
+                                form-control">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <input type="email" name="userEmail" id="userEmail"
+                                placeholder="Enter Your Email..." class="
+                                form-control">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <input type="tel" name="userPhone" id="userPhone"
+                                placeholder="Enter Your Phone Number..." class="
+                                form-control">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <input type="number" name="userAge" id="userAge"
+                                placeholder="Enter Your Age..." class="
+                                form-control">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <input type="password" name="userPassword" id="userPassword"
+                                placeholder="Enter Your Password..." class="
+                                form-control">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <input type="password" name="userRePassword" id="userRePassword"
+                                placeholder="Re Enter Your Password..." class="
+                                form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger d-flex mx-auto disabled">Submit</button>
                 </div>
+            </form>
+        </section>
+        <section id="more-detailes">
+            <div class="container">
+                <div class="row" id="meal-detailes">
+                    <div class="col-md-4">
+                        <figure>
+                            <img src="" alt="">
+                        </figure>
+                        <h1>Name</h1>
+                    </div>
+                    <div class="col-md-8">
+                        <h2>Title</h2>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Voluptatem aliquam eaque vitae explicabo
+                            praesentium placeat veritatis quisquam nemo
+                            molestiae quo nesciunt, hic cum repellat deserunt
+                            saepe aperiam veniam quod maiores suscipit.
+                            Veritatis esse voluptates est exercitationem sit
+                            ducimus labore quos ullam atque quae sint dicta, at
+                            quisquam laborum expedita a eos voluptatibus ex
+                            dolorum alias delectus. Illo ex tempora excepturi
+                            minima facere saepe odio laboriosam architecto quo.
+                            Aliquam assumenda facere sequi vel, porro architecto
+                            aspernatur, distinctio ipsam ea quae eum repellat
+                            tempore similique non exercitationem inventore
+                            laboriosam possimus earum expedita iste consequatur
+                            eveniet fugit nulla ipsum? Incidunt libero esse
+                            magni?</p>
+                        <ul class=" list-unstyled">
+                            <li><h3>Area :</h3></li>
+                            <li><h3>Category :</h3></li>
+                            <li class="mb-3"><h3>Recipes :</h3>
+                                <span class=" bg-info bg-opacity-25 py-1 px-3
+                                    rounded-3">kkk</span>
+                            </li>
+                            <li class=" mb-4"><h3>Tags :</h3>
+                                <span class=" bg-danger bg-opacity-25 py-1 px-3
+                                    rounded-3">kkk</span>
+
+                            </li>
+                            <a href="" target="_blank" class="btn btn-success">Source</a>
+                            <a href="" target="_blank" class="btn btn-danger">Youtube</a>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </section>
         <script src="./js/aos.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
         <script src="./js/jquery-3.6.3.min.js"></script>
-        <script src="./js/index.js" type="module"></script>
+        <script src="./js/index.js"></script>
     </body>
 </html>

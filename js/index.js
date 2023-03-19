@@ -1,11 +1,12 @@
 let searchName = document.querySelector("#search-by-name");
 let searchLetter = document.querySelector("#search-by-letter");
+
 async function getData() {
   let res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/categories.php`
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=`
   );
   res = await res.json();
-  displayData(res.categories, "display-data");
+  displayData(res.meals, "display-data");
 }
 getData();
 
@@ -31,6 +32,7 @@ function openNav() {
 
 $(document).ready(function () {
   $(".loading").fadeOut(1000);
+  $(".loading").fadeOut(1000);
   // $(".loading").fadeOut(1000, () => closeNav());
 });
 $(document).click((e) => {
@@ -47,24 +49,29 @@ $("#open").click(() => {
     openNav();
   }
 });
+
 /* E N D          N  A V */
 AOS.init();
 
 function displayData(arr, id = "display-data") {
+  // console.log(arr);
+  $("section").css("display", "none");
+  $("#main-page").css("display", "block");
   let cartona = ``;
   for (let i = 0; i < arr.length; i++) {
-    cartona += `<div class="col-md-3 cursor-pointer">
-                        <div class="meal-card">
-                            <figure class=" position-relative">
-                                <img src="${arr[i].strCategoryThumb}"
-                                    class="w-100" alt="">
-                                <div class="img-caption bg-opacity-50 bg-white">
-                                    ${arr[i].strCategory}
+    cartona += `<div class="col-md-3 cursor-pointer" mealIndex="${arr[i].idMeal}" >
+                        <div class="meal-card" mealIndex="${arr[i].idMeal}">
+                            <figure class=" position-relative" mealIndex="${arr[i].idMeal}">
+                                <img src="${arr[i].strMealThumb}"
+                                    class="w-100" alt="" mealIndex="${arr[i].idMeal}">
+                                <div class="img-caption bg-opacity-50 bg-white" mealIndex="${arr[i].idMeal}" onclick="getDataById(${arr[i].idMeal})">
+                                    ${arr[i].strMeal}
                                 </div>
                             </figure>
                         </div>
                     </div>`;
   }
+  // console.log(arr);
   document.getElementById(id).innerHTML = cartona;
 }
 
@@ -77,7 +84,7 @@ async function getDataByName(name) {
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
   );
   res = await res.json();
-  console.log(res);
+  // console.log(res);
   displayDataByName(res.meals, "display-search-data");
 }
 
@@ -89,19 +96,16 @@ function displayDataByName(arr, id = "display-search-data") {
   let cartona = ``;
 
   for (let i = 0; i < arr.length; i++) {
-    cartona += `<div class="col-md-3 cursor-pointer" onclick="${() => {
-      return getDataByName(arr[i].strCategoryThumb);
-    }}">
-                        <div class="meal-card">
-                            <figure class=" position-relative">
-                                <img src="${arr[i].strMealThumb}"
-                                    class="w-100" alt="">
-                                <div class="img-caption bg-opacity-50 bg-white">
-                                    ${arr[i].strMeal}
-                                </div>
-                            </figure>
+    cartona += `<div class="col-md-3 cursor-pointer"">
+                  <div class="meal-card">
+                    <figure class=" position-relative">
+                        <img src="${arr[i].strMealThumb}" class="w-100" alt="">
+                        <div class="img-caption bg-opacity-50 bg-white" onclick="getDataById(${arr[i].idMeal})">
+                          ${arr[i].strMeal}
                         </div>
-                    </div>`;
+                    </figure>
+                  </div>
+                </div>`;
   }
   document.getElementById(id).innerHTML = cartona;
 }
@@ -135,14 +139,13 @@ async function listCategories() {
 }
 function displaylistCategories(arr) {
   let cartona = ``;
-
   for (let i = 0; i < arr.length; i++) {
-    cartona += `<div class="col-md-3 cursor-pointer mb-5" onclick="">
+    cartona += `<div class="col-md-3 cursor-pointer mb-5">
                         <div class="meal-card">
                             <figure class=" position-relative">
                                 <img src="${arr[i].strCategoryThumb}"
                                     class="w-100" alt="">
-                                <div class="img-caption bg-opacity-50 bg-white">
+                                <div class="img-caption bg-opacity-50 bg-white cursor-pointer" onclick="categoryData()" data-categ-id="${arr[i].strCategory}">
                                     ${arr[i].strCategory}
                                 </div>
                             </figure>
@@ -151,7 +154,30 @@ function displaylistCategories(arr) {
   }
   document.getElementById("display-categories-data").innerHTML = cartona;
 }
-
+async function categoryData() {
+  let ele = event.target.getAttribute("data-categ-id");
+  let res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${ele}`
+  );
+  res = await res.json();
+  displayData(res.meals);
+}
+function categoriesMoreDetailes(arr) {
+  console.log(arr);
+  let cartona = ``;
+  for (let i = 0; i < arr.length; i++) {
+    cartona += `<div class="col-md-3 cursor-pointer"">
+                  <div class="meal-card">
+                    <figure class=" position-relative">
+                        <img src="${arr[i].strMealThumb}" class="w-100" alt="">
+                        <div class="img-caption bg-opacity-50 bg-white" onclick="getDataById(${arr[i].idMeal})">
+                          ${arr[i].strMeal}
+                        </div>
+                    </figure>
+                  </div>
+                </div>`;
+  }
+}
 $("#navArea").click(() => {
   $("section").css("display", "none");
   $("#area").css("display", "block");
@@ -164,24 +190,32 @@ async function listArea() {
 `
   );
   res = await res.json();
-  console.log(res);
+  // console.log(res);
   displaylistArea(res.meals);
 }
 function displaylistArea(arr) {
   let cartona = ``;
   for (let i = 0; i < arr.length; i++) {
-    cartona += `<div class="col-md-3 cursor-pointer mb-5" onclick="">
+    cartona += `<div class="col-md-3 cursor-pointer mb-5">
                         <div class="meal-card text-center">
-                            
                         <i class="fa-brands fa-fort-awesome fs-1 mb-2"></i>
-                        <h3>${arr[i].strArea}</h3>
-                    
+                        <h3 onclick="getAreaDetailes()" data-area-name="${arr[i].strArea}">${arr[i].strArea}</h3>
                         </div>
                     </div>`;
   }
   document.getElementById("display-area-data").innerHTML = cartona;
 }
-
+function getAreaDetailes(e) {
+  let ele = event.target.getAttribute("data-area-name");
+  areaData(ele);
+}
+async function areaData(name) {
+  let res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?a=${name}`
+  );
+  res = await res.json();
+  displayData(res.meals);
+}
 $("#navIngredients").click(() => {
   $("section").css("display", "none");
   $("#ingredients").css("display", "block");
@@ -190,31 +224,89 @@ $("#navIngredients").click(() => {
 
 async function listIngredients() {
   let res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast`
+    `https://www.themealdb.com/api/json/v1/1/list.php?i=list`
   );
   res = await res.json();
-  console.log(res);
-  displaylistIngredients(res.meals);
+  displaylistIngredients(res.meals.slice(0, 20));
 }
 function displaylistIngredients(arr) {
+  console.log(arr);
   let cartona = ``;
   for (let i = 0; i < arr.length && i < 50; i++) {
-    cartona += `<div class="col-md-3 cursor-pointer mb-5" onclick="">
-                        <div class="meal-card text-center">
-                            <figure class=" position-relative">
-                                <img src="${arr[i].strMealThumb}"
-                                    class="w-100" alt="">
-                                <div class="img-caption bg-opacity-50 bg-white">
-                                    ${arr[i].strMeal}
-                                </div>
-                            </figure>
+    cartona += `<div class="col-md-3 cursor-pointer mb-5"  onclick="ingredientsDetailes()" data-ingredients="${arr[i].strIngredient}">
+                        <div class="meal-card text-center" data-ingredients="${arr[i].strIngredient}">
+                                
+                                <h3 class="img-captio bg-opacity-50 bg-white" data-ingredients="${arr[i].strIngredient}">
+                                    ${arr[i].strIngredient}
+                                </h3>
+                                <p class="text-secondary" data-ingredients="${arr[i].strIngredient}">${arr[i].strDescription}</p>
                         </div>
                     </div>`;
   }
   document.getElementById("display-ingredients-data").innerHTML = cartona;
 }
-
+function ingredientsDetailes() {
+  let ele = event.target.getAttribute("data-ingredients");
+  ingredientData(ele);
+}
+async function ingredientData(name) {
+  let res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?i=${name}`
+  );
+  res = await res.json();
+  displayData(res.meals);
+}
 $("#navContact-us").click(() => {
   $("section").css("display", "none");
-  $("#contact-us").css("display", "block");
+  $("#contact-us").css("display", "flex");
 });
+
+async function getDataById(id = "5") {
+  let res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+  );
+  res = await res.json();
+
+  getMoreDetales(res.meals[0]);
+}
+function getMoreDetales(res) {
+  console.log(res);
+  $("section").css("display", "none");
+  $("#more-detailes").css("display", "block");
+  let cartona = `<div class="col-md-4">
+                        <figure>
+                            <img src="${res.strMealThumb}" class="w-100" alt="">
+                        </figure>
+                        <h1>${res.strMeal}</h1>
+                    </div>
+                    <div class="col-md-8">
+                        <h2>Instructions</h2>
+                        <p>${res.strInstructions}</p>
+                            <ul class=" list-unstyled">
+                                <li><h3>Area :${res.strArea}</h3></li>
+                                <li><h3>Category :${res.strCategory}</h3></li>
+                                <li class="mb-3"><h3>Recipes :</h3>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient1}</span>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient2}</span>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient3}</span>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient4}</span>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient5}</span>
+                                    <span class="bg-info bg-opacity-25 py-1 px-3 rounded-3">${res.strIngredient6}</span>
+                                    
+                                    
+                                    
+                                </li>
+                                <li class=" mb-4"><h3>Tags :</h3>
+                                    <span class="bg-danger bg-opacity-25 py-1 px-3 rounded-3">${res.strTags}</span>
+                                    
+                                </li>
+                                <a href="${res.strSource}" target="_blank" class="btn btn-success">Source</a>
+                                <a href="${res.strYoutube}" target="_blank" class="btn btn-danger">Youtube</a>
+                            </ul>
+
+                            <button class="btn btn-outline-success" id="back-home" onclick="getData()">BACK TO HOME</button>
+
+                    </div>`;
+
+  document.getElementById("meal-detailes").innerHTML = cartona;
+}
