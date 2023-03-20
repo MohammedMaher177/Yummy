@@ -2,6 +2,7 @@ let searchName = document.querySelector("#search-by-name");
 let searchLetter = document.querySelector("#search-by-letter");
 
 async function getData() {
+  isLoading()
   let res = await fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=`
   );
@@ -46,6 +47,13 @@ $("#open").click(() => {
 function done() {
   $(".loading").fadeOut(1000, () => closeNav());
 }
+$(document).click((e)=>{
+  let eleWidth = $("nav").innerWidth() //+ $("#openning").innerWidth();
+  if(eleWidth < e.clientX){
+    closeNav()
+  }
+  console.log(e.clientX);
+})
 /* E N D          N  A V */
 
 function displayData(arr, id = "display-data") {
