@@ -33,15 +33,8 @@ function openNav() {
   });
 }
 AOS.init();
-// $(document).ready(function () {
-//   $(".loading").fadeOut(1000, () => closeNav());
-// });
-$(document).click((e) => {
-  let eleWidth = $("nav").innerWidth();
-  if (e.clientX > eleWidth) {
-    closeNav();
-  }
-});
+
+$(document).ready(done);
 $("#open").click(() => {
   let eleOffset = $("#openning").offset().left;
   if (eleOffset !== 0) {
@@ -50,11 +43,13 @@ $("#open").click(() => {
     openNav();
   }
 });
-
+function done() {
+  $(".loading").fadeOut(1000, () => closeNav());
+}
 /* E N D          N  A V */
 
 function displayData(arr, id = "display-data") {
-  isLoading();
+  // isLoading();
   $("section").css("display", "none");
   $("#main-page").css("display", "block");
   let cartona = ``;
@@ -71,8 +66,10 @@ function displayData(arr, id = "display-data") {
                         </div>
                     </div>`;
   }
+  $(".loading").fadeOut(1000);
   document.getElementById(id).innerHTML = cartona;
-  $(document).ready($(".loading").fadeOut(1000));
+  // done();
+  // $(document).ready(done)
 }
 
 $("#navSearch").click(() => {
@@ -80,9 +77,8 @@ $("#navSearch").click(() => {
   $("section").css("display", "none");
   $("#search").css("display", "block");
   closeNav();
-  $(document).ready(function () {
-    $(".loading").fadeOut(1000);
-  });
+
+  done();
 });
 async function getDataByName(name) {
   let res = await fetch(
@@ -111,7 +107,7 @@ function displayDataByName(arr, id = "display-search-data") {
   }
   document.getElementById(id).innerHTML = cartona;
   $(document).ready(function () {
-    $(".loading").fadeOut(1000);
+    done();
   });
 }
 async function getDataByLetter(name) {
@@ -141,6 +137,7 @@ async function listCategories() {
   );
   res = await res.json();
   console.log(res);
+  done();
   displaylistCategories(res.categories);
 }
 function displaylistCategories(arr) {
@@ -164,16 +161,20 @@ function displaylistCategories(arr) {
                     </div>`;
   }
   document.getElementById("display-categories-data").innerHTML = cartona;
-  $(document).ready(() => {
-    $(".loading").fadeOut(1000);
-  });
+  // $(document).ready(() => {
+  //   $(".loading").fadeOut(1000);
+  // });
+  done();
 }
 async function categoryData() {
+  // isLoading();
   let ele = event.target.getAttribute("data-categ-id");
   let res = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${ele}`
   );
   res = await res.json();
+  // $(".loading").fadeOut(1000);
+  done();
   displayData(res.meals);
 }
 function categoriesMoreDetailes(arr) {
@@ -191,6 +192,10 @@ function categoriesMoreDetailes(arr) {
                   </div>
                 </div>`;
   }
+  // $(document).ready(() => {
+  //   $(".loading").fadeOut(1000);
+  // });
+  done();
 }
 $("#navArea").click(() => {
   $("section").css("display", "none");
