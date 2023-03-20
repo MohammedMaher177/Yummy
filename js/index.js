@@ -33,9 +33,9 @@ function openNav() {
   });
 }
 AOS.init();
-$(document).ready(function () {
-  $(".loading").fadeOut(1000, () => closeNav());
-});
+// $(document).ready(function () {
+//   $(".loading").fadeOut(1000, () => closeNav());
+// });
 $(document).click((e) => {
   let eleWidth = $("nav").innerWidth();
   if (e.clientX > eleWidth) {
@@ -72,11 +72,7 @@ function displayData(arr, id = "display-data") {
                     </div>`;
   }
   document.getElementById(id).innerHTML = cartona;
-  $(document).ready(
-    $(document).ready(function () {
-      $(".loading").fadeOut(1000);
-    })
-  );
+  $(document).ready($(".loading").fadeOut(1000));
 }
 
 $("#navSearch").click(() => {
