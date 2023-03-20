@@ -83,7 +83,7 @@ $("#navSearch").click(() => {
   isLoading();
   $("section").css("display", "none");
   $("#search").css("display", "block");
-
+  closeNav();
   $(document).ready(function () {
     $(".loading").fadeOut(1000);
   });
@@ -134,6 +134,7 @@ $("#nav-categories").click(() => {
   $("section").css("display", "none");
   $("#categories").css("display", "block");
   isLoading();
+  closeNav();
   listCategories();
 });
 
@@ -147,6 +148,7 @@ async function listCategories() {
   displaylistCategories(res.categories);
 }
 function displaylistCategories(arr) {
+  console.log(arr);
   let cartona = ``;
   for (let i = 0; i < arr.length; i++) {
     cartona += `<div class="col-md-3 cursor-pointer mb-5">
@@ -155,7 +157,11 @@ function displaylistCategories(arr) {
                                 <img src="${arr[i].strCategoryThumb}"
                                     class="w-100" alt="">
                                 <div class="img-caption bg-opacity-50 bg-white cursor-pointer" onclick="categoryData()" data-categ-id="${arr[i].strCategory}">
-                                    ${arr[i].strCategory}
+                                <div class="text-center">
+                                <h3>${arr[i].strCategory}</h3>
+                                    <p>${arr[i].strCategoryDescription}</p>
+                                </div>    
+                                
                                 </div>
                             </figure>
                         </div>
@@ -194,6 +200,7 @@ $("#navArea").click(() => {
   $("section").css("display", "none");
   $("#area").css("display", "block");
   isLoading();
+  closeNav();
   listArea();
 });
 
@@ -236,6 +243,7 @@ $("#navIngredients").click(() => {
   $("section").css("display", "none");
   $("#ingredients").css("display", "block");
   isLoading();
+  closeNav();
   listIngredients();
 });
 
@@ -278,6 +286,7 @@ async function ingredientData(name) {
 }
 $("#navContact-us").click(() => {
   isLoading();
+  closeNav();
   $("section").css("display", "none");
   $("#contact-us").css("display", "flex");
   $(document).ready(() => {
