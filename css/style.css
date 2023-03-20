@@ -5,11 +5,12 @@
 } */
 
 .center {
-  height: 100vh;
+  height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #000;
+ 
 }
 .wave {
   width: 5px;
@@ -58,7 +59,14 @@
     transform: scale(0);
   }
 }
-
+.loading{
+   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
 #search,
 #categories,
 #area,
