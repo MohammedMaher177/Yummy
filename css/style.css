@@ -67,6 +67,15 @@
 #more-detailes {
   display: none;
 }
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 18px;
+  max-height: calc(4 * 18) px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -90,7 +99,7 @@ section {
 
 .img-caption {
   position: absolute;
-  top: 120%;
+  top: 150%;
   right: 0;
   left: 0;
   bottom: 0;
@@ -99,20 +108,20 @@ section {
   align-items: center;
   justify-content: center;
 }
+#categories .img-caption {
+  top: 150%;
+}
+
+#categories p {
+  max-height: calc(3 * 18) px;
+  -webkit-line-clamp: 3;
+}
 .meal-card:hover .img-caption {
   top: 0;
 }
-
-p {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 18px;
-  max-height: calc(4 * 18) px;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+#categories .meal-card:hover .img-caption {
+  top: 0;
 }
-
 #contact-us p {
   display: none;
 }
